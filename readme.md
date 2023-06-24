@@ -15,11 +15,15 @@ Este código em C tem o objetivo de montar uma matriz de conflitos com base em u
 ## Tópicos utilizados em C
 
 - Leitura e escrita de arquivos (`FILE`, `fopen`, `fclose`, `fscanf`, `fprintf`).
+- Uso de bibliotecas.
 - Utilização de matrizes.
 - Uso de estruturas de decisão.
 - Uso de estruturas de repetição.
 - Uso de funções e passagem de parâmetros.
 - Geração de números aleatórios (`srand`, `rand`).
+- Structs (estruturas).
+- Alocação Dinâmica.
+- Recursividade.
 
 ## Como executar o código
 

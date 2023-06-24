@@ -2,8 +2,14 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
-#define disciplinas_maxima 100
-//Função para montar matriz de conflitos a paratir do arquivoEntrada.
+#define disciplinas_maxima 25
+
+struct Disciplina{
+	int disciplina1;
+	int disciplina2;
+};
+
+// Montar matriz de conflitos a paratir do arquivoEntrada.
 void montarMatrizConflitos(const char* arquivoEntrada) {
     FILE* arquivo = fopen(arquivoEntrada, "r");
     if (arquivo == NULL) {
@@ -22,13 +28,15 @@ void montarMatrizConflitos(const char* arquivoEntrada) {
             grade[i][j] = 0;
         }
     }
-
+	
+	struct Disciplina disciplinas; 
+	
     // Ler conflitos e atualizar a matriz
     for (int j = 0; j < numConflitos; j++) {
-        int disciplina1, disciplina2;
-        fscanf(arquivo, "%d %d", &disciplina1, &disciplina2);
-        grade[disciplina1 - 1][disciplina2 - 1] = 1;
-        grade[disciplina2 - 1][disciplina1 - 1] = 1;
+        //int disciplina1, disciplina2;
+        fscanf(arquivo, "%d %d", &disciplinas.disciplina1, &disciplinas.disciplina2);
+        grade[disciplinas.disciplina1 - 1][disciplinas.disciplina2 - 1] = 1;
+        grade[disciplinas.disciplina2 - 1][disciplinas.disciplina1 - 1] = 1;
     }
 
     fclose(arquivo);
@@ -55,17 +63,17 @@ void montarMatrizConflitos(const char* arquivoEntrada) {
 }
 
 bool verificarConflitos(int grade[disciplinas_maxima][disciplinas_maxima], int disciplinas[], int numDisciplinas, int novaDisciplina) {
-    // Função para verificar se uma nova disciplina entra em conflito com as disciplinas existentes
+    // verificar se uma nova disciplina entra em conflito com as disciplinas existentes
     for (int i = 0; i < numDisciplinas; i++) {
         if (grade[disciplinas[i]][novaDisciplina] == 1 || grade[novaDisciplina][disciplinas[i]] == 1) {
-            return false; //Conflito encontrado, retorna falso
+            return false; //Conflito encontrado
         }
     }
-    return true; // Não há conflitos, retorna verdadeiro
+    return true; // sem conflito
 }
 
 void montarGrade(int grade[disciplinas_maxima][disciplinas_maxima], int numDisciplinas, int numeroSorteado) {
-    // Função para montar a grade de disciplinas a partir de um ponto de análise
+    // Função para montar a grade de disciplinas a partir de um ponto de analise
 
     int disciplinasEscolhidas[disciplinas_maxima];
     int numDisciplinasEscolhidas = 0;

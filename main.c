@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
+#include <malloc.h>
 #define disciplinas_maxima 25
 
 struct Disciplina{
@@ -63,23 +64,30 @@ void montarMatrizConflitos(const char* arquivoEntrada) {
 }
 
 bool verificarConflitos(int grade[disciplinas_maxima][disciplinas_maxima], int disciplinas[], int numDisciplinas, int novaDisciplina) {
-    // verificar se uma nova disciplina entra em conflito com as disciplinas existentes
-    for (int i = 0; i < numDisciplinas; i++) {
-        if (grade[disciplinas[i]][novaDisciplina] == 1 || grade[novaDisciplina][disciplinas[i]] == 1) {
-            return false; //Conflito encontrado
-        }
+    // Função para verificar se uma nova disciplina entra em conflito com as disciplinas existentes
+
+    // Caso base: todas as disciplinas foram verificadas
+    if (numDisciplinas == 0) {
+        return true; // Não há conflitos, retorna verdadeiro
     }
-    return true; // sem conflito
+
+    // Verifica se há conflitos entre a nova disciplina e a disciplina atual
+    if (grade[disciplinas[numDisciplinas - 1]][novaDisciplina] == 1 || grade[novaDisciplina][disciplinas[numDisciplinas - 1]] == 1) {
+        return false; // Conflito encontrado, retorna falso
+    }
+
+    // Chamada recursiva, verificando as disciplinas restantes
+    return verificarConflitos(grade, disciplinas, numDisciplinas - 1, novaDisciplina);
 }
 
-void montarGrade(int grade[disciplinas_maxima][disciplinas_maxima], int numDisciplinas, int numeroSorteado) {
-    // Função para montar a grade de disciplinas a partir de um ponto de analise
+void montarGrade(int grade[disciplinas_maxima][disciplinas_maxima], int *numDisciplinas, int numeroSorteado) {
+    // FunÃ§Ã£o para montar a grade de disciplinas a partir de um ponto de anÃ¡lise
 
     int disciplinasEscolhidas[disciplinas_maxima];
     int numDisciplinasEscolhidas = 0;
 
     
-    for (int i = numeroSorteado - 1; i < numDisciplinas; i++) {
+    for (int i = numeroSorteado - 1; i < *numDisciplinas; i++) {
         if (verificarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
             disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
             numDisciplinasEscolhidas++;
@@ -109,7 +117,7 @@ int main() {
     FILE* arquivo;
     int numDisciplinas;
     int grade[disciplinas_maxima][disciplinas_maxima];
-    int sorteio[3];
+    int* sorteio = NULL; 
 
     arquivo = fopen("matriz.txt", "r");
     if (arquivo == NULL) {
@@ -128,14 +136,21 @@ int main() {
     fclose(arquivo);
 
     srand(time(NULL));
-
+   
+    int numSorteios = 3;  // Alteração: número de sorteios desejados
+    sorteio = (int*)malloc(numSorteios*sizeof(int));  // Alocação dinâmica
     printf("Analises a partir de disciplinas sorteadas:\n");
     for (int i = 0; i < 3; i++) {
         sorteio[i] = rand() % numDisciplinas + 1;
         printf("Analise %d - Disciplina sorteada: %d\n", i + 1, sorteio[i]);
-        montarGrade(grade, numDisciplinas, sorteio[i]);
+        montarGrade(grade, &numDisciplinas, sorteio[i]);
         printf("\n");
     }
 
     return 0;
 }
+
+
+
+
+

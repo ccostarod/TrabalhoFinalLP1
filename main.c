@@ -64,16 +64,26 @@ bool verificarConflitos(int grade[disciplinas_maxima][disciplinas_maxima], int d
     return true; // Não há conflitos, retorna verdadeiro
 }
 
-void montarGrade(int grade[disciplinas_maxima][disciplinas_maxima], int numDisciplinas, int inicioAnalise) {
+void montarGrade(int grade[disciplinas_maxima][disciplinas_maxima], int numDisciplinas, int numeroSorteado) {
     // Função para montar a grade de disciplinas a partir de um ponto de análise
+
     int disciplinasEscolhidas[disciplinas_maxima];
     int numDisciplinasEscolhidas = 0;
 
-    for (int i = inicioAnalise - 1; i < numDisciplinas; i++) {
-        // Verifica se a disciplina atual pode ser adicionada à grade
+    
+    for (int i = numeroSorteado - 1; i < numDisciplinas; i++) {
         if (verificarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
             disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
             numDisciplinasEscolhidas++;
+        }
+    }
+
+  
+    for (int i = numeroSorteado - 2; i >= 0; i--) {
+    
+        if (verificarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
+        disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
+        numDisciplinasEscolhidas++;
         }
     }
 
@@ -83,6 +93,7 @@ void montarGrade(int grade[disciplinas_maxima][disciplinas_maxima], int numDisci
     }
     printf("\n");
 }
+
 
 int main() {
     montarMatrizConflitos("entrada.txt");

@@ -12,6 +12,10 @@ Este código em C tem o objetivo de montar uma matriz de conflitos com base em u
 
 4. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 análises a partir de disciplinas sorteadas, utilizando a função "montarGrade".
 
+## Exemplo de Entrada: 
+## Exemplo de Saída: 
+![Exemplo de saída]("C:\Users\Rodrigo Ótavio\Desktop\saida.png")
+
 ## Tópicos utilizados em C
 
 - Leitura e escrita de arquivos (`FILE`, `fopen`, `fclose`, `fscanf`, `fprintf`).

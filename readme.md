@@ -18,7 +18,7 @@ montarGrade2:Pega o número sorteado e analisa até a última disciplina (análi
 
 4. *comparar*: Compara as duas analises feitas a partir das funções montarGrade e montarGrade2, retornando a que apresenta o maior número de disciplinas.
 
-4. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 análises a partir de disciplinas sorteadas, utilizando a função "montarGrade".
+4. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 abordagens a partir 3 de disciplinas sorteadas, fazendo duas análises em cada, utilizando a função "montarGrade" e "montarGrade2", e escolhe a ideal a partir da função "comparar".
 
 
 ## Tópicos utilizados em C

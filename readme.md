@@ -30,17 +30,16 @@ O trabalho é válido pela 3ª nota da disciplina de Linguagem de Progamação I
 ## Como executar o programa no CodeBlocks:
 
 1. Primeiramente, *modifique o arquivo "entrada.txt"* colocando nele um cénario (contendo os conflitos entre as disciplinas). Exemplo de cénario com 15 disciplinas x 25 conflitos:
-<img width="460" height="300" src="imgs/entrada.png">
+<img src="imgs/entrada.png">
 
 2. É recomendado deixar esses *arquivos juntos na mesma pasta* ("main.c", "entrada.txt", "matriz.txt", "trabalhoLP1.cbp")
 <img src="imgs/exemplo_pasta.png">
 
 3. Depois *abra o arquivo main.c* em algum ambiente de desenvolvimento (nesse caso o CodeBlocks)
     1. Vá em "File" e depois em "Open"
-    <img src="imgs/codeblocks_imgs/1.png">
+    <img width="644" height="455" src="imgs/codeblocks_imgs/1.png">
     2. Ache a pasta que você colocou os arquivos e *selecione a main.c*
     <img src="imgs/codeblocks_imgs/2.png">
-
 4. Rode o código
 <img src="imgs/codeblocks_imgs/2.png">    
 

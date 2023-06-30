@@ -5,11 +5,13 @@ O trabalho é válido pela 3ª nota da disciplina de Linguagem de Progamação I
 
 ## Funcionalidades
 
-1. *montarMatrizConflitos*: Lê um arquivo de entrada contendo o número de disciplinas e conflitos entre elas. Em seguida, cria uma matriz de conflitos e a armazena em um arquivo chamado "matriz.txt".
+1. *montarMatriz*: Lê um arquivo de entrada contendo o número de disciplinas e conflitos entre elas. Em seguida, cria uma matriz de conflitos e a armazena em um arquivo chamado "matriz.txt".
 
-2. *verificarConflitos*: Verifica se uma nova disciplina escolhida entra em conflito com as disciplinas já escolhidas anteriormente, com base na matriz de conflitos.
+2. *procurarConflitos*: Verifica se uma nova disciplina escolhida entra em conflito com as disciplinas já escolhidas anteriormente, com base na matriz de conflitos.
 
-3. *montarGrade*: A partir de uma posição de início de análise (decidida por sorteio) e da matriz de conflitos, seleciona as disciplinas que não têm conflitos com as disciplinas escolhidas anteriormente.
+3. *montarGrade* e *montarGrade2*: A partir de uma posição de início de análise (decidida por sorteio) e da matriz de conflitos, seleciona as disciplinas que não têm conflitos com as disciplinas escolhidas anteriormente.
+
+4. *comparar*: Compara as duas analises feitas a partir das funções montarGrade e montarGrade2, retornando a que apresenta o maior número de disciplinas.
 
 4. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 análises a partir de disciplinas sorteadas, utilizando a função "montarGrade".
 
@@ -44,3 +46,4 @@ O trabalho é válido pela 3ª nota da disciplina de Linguagem de Progamação I
 <img src="imgs/codeblocks_imgs/3.png"><br>    
 
 5. A saída esperada deve ser próxima a essa imagem a seguir:
+<img width="644" height="455" src="imgs/saida.png"><br>

@@ -3,8 +3,8 @@ O trabalho é válido pela 3ª nota da disciplina de Linguagem de Progamação I
 ## Matriz de Conflitos - Introdução
 
 Este código em C tem o objetivo de montar uma matriz de conflitos com base em um arquivo de entrada e realizar 2 análises a partir de disciplinas sorteadas.
-As funções (montarGrade e montarGrade2) percorrem a matriz de conflitos (grade) a partir de um ponto de análise (número sorteado) e selecionam as disciplinas que podem ser adicionadas à grade sem conflitos. A diferença está na ordem de checagem:<br>
-montarGrade: Pega o número sorteado e analisa até a última disciplina (análise crescente), e depois analisa a partir do número sorteado - 1, até a primeira disciplina (análise decrescente).<br>
+As funções (montarGrade e montarGrade2) percorrem a matriz de conflitos (grade) a partir de um ponto de análise (número sorteado) e selecionam as disciplinas que podem ser adicionadas à grade sem conflitos. A diferença está na ordem de checagem:<br><br>
+montarGrade: Pega o número sorteado e analisa até a última disciplina (análise crescente), e depois analisa a partir do número sorteado - 1, até a primeira disciplina (análise decrescente).<br><br>
 montarGrade2:Pega o número sorteado e analisa até a última disciplina (análise crescente), e depois analisa a partir do primeiro termo até o número sorteado - 1 (análise crescente).
 
 
@@ -18,7 +18,7 @@ montarGrade2:Pega o número sorteado e analisa até a última disciplina (análi
 
 4. *comparar*: Compara as duas analises feitas a partir das funções montarGrade e montarGrade2, retornando a que apresenta o maior número de disciplinas.
 
-4. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 análises a partir de disciplinas sorteadas, utilizando a função "montarGrade".
+4. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 abordagens a partir 3 de disciplinas sorteadas, fazendo duas análises em cada, utilizando a função "montarGrade" e "montarGrade2", e escolhe a ideal a partir da função "comparar".
 
 
 ## Tópicos utilizados em C
@@ -39,7 +39,7 @@ montarGrade2:Pega o número sorteado e analisa até a última disciplina (análi
 1. Primeiramente, *modifique o arquivo "entrada.txt"* colocando nele um cénario (contendo os conflitos entre as disciplinas). Exemplo de cénario com 15 disciplinas x 25 conflitos:
 <img src="imgs/entrada.png">
 
-2. É recomendado deixar esses *arquivos juntos na mesma pasta* ("main.c", "entrada.txt", "matriz.txt", "trabalhoLP1.cbp")
+2. É recomendado deixar esses *arquivos juntos na mesma pasta* ("main.c", "entrada.txt", "matriz.txt")
 <img src="imgs/exemplo_pasta.png">
 
 3. Depois *abra o arquivo main.c* em algum ambiente de desenvolvimento (nesse caso o CodeBlocks)

@@ -39,13 +39,13 @@ montarGrade2:Pega o número sorteado e analisa até a última disciplina (análi
 1. Primeiramente, *modifique o arquivo "entrada.txt"* colocando nele um cénario (contendo os conflitos entre as disciplinas). Exemplo de cénario com 15 disciplinas x 25 conflitos:
 <img src="imgs/entrada.png">
 
-2. É recomendado deixar esses *arquivos juntos na mesma pasta* ("main.c", "entrada.txt", "matriz.txt")
+2. É recomendado deixar esses *arquivos juntos na mesma pasta* (`main.c`, `entrada.txt`, `matriz.txt`)
 <img src="imgs/exemplo_pasta.png">
 
 3. Depois *abra o arquivo main.c* em algum ambiente de desenvolvimento (nesse caso o CodeBlocks)
-    1. Vá em "File" e depois em "Open"<br>
+    1. Vá em `File` e depois em `Open`<br>
     <img width="644" height="455" src="imgs/codeblocks_imgs/1.png"><br>
-    2. Ache a pasta que você colocou os arquivos e *selecione a main.c*
+    2. Ache a pasta que você colocou os arquivos e *selecione a `main.c`*
     <img src="imgs/codeblocks_imgs/2.png"><br>
 4. Rode o código
 <img src="imgs/codeblocks_imgs/3.png"><br>    

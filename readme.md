@@ -45,4 +45,3 @@ O trabalho é válido pela 3ª nota da disciplina de Linguagem de Progamação I
 <img src="imgs/codeblocks_imgs/2.png">    
 
 5. A saída esperada deve ser próxima a essa imagem a seguir:
-    

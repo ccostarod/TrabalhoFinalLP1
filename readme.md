@@ -36,7 +36,7 @@ O trabalho é válido pela 3ª nota da disciplina de Linguagem de Progamação I
 <img src="imgs/exemplo_pasta.png">
 
 3. Depois *abra o arquivo main.c* em algum ambiente de desenvolvimento (nesse caso o CodeBlocks)
-    1. Vá em "File" e depois em "Open"
+    1. Vá em "File" e depois em "Open"<br>
     <img width="644" height="455" src="imgs/codeblocks_imgs/1.png"><br>
     2. Ache a pasta que você colocou os arquivos e *selecione a main.c*
     <img src="imgs/codeblocks_imgs/2.png"><br>

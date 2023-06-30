@@ -1,6 +1,7 @@
 # Matriz de Conflitos - README
 
 Este código em C tem o objetivo de montar uma matriz de conflitos com base em um arquivo de entrada e realizar análises a partir de disciplinas sorteadas.
+O trabalho é válido pela 3ª nota da disciplina de Linguagem de Progamação I e foi feito por Rodrigo Otávio, Therlyson Ryan, João Marcelo.
 
 ## Funcionalidades
 
@@ -12,9 +13,6 @@ Este código em C tem o objetivo de montar uma matriz de conflitos com base em u
 
 4. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 análises a partir de disciplinas sorteadas, utilizando a função "montarGrade".
 
-## Exemplo de Entrada: 
-## Exemplo de Saída: 
-![Exemplo de saída]("imgs\saida.png")
 
 ## Tópicos utilizados em C
 
@@ -29,9 +27,22 @@ Este código em C tem o objetivo de montar uma matriz de conflitos com base em u
 - Alocação Dinâmica.
 - Recursividade.
 
-## Como executar o código
+## Como executar o programa no CodeBlocks:
 
-1. Certifique-se de ter um compilador C instalado em sua máquina (por exemplo, GCC no Linux ou MinGW no Windows).
-2. Recomendo fortemente que baixe o .zip da pasta e abra depois a main.c em alguma idle.
-3. Execute o código e seja feliz!
+1. Primeiramente, *modifique o arquivo "entrada.txt"* colocando nele um cénario (contendo os conflitos entre as disciplinas). Exemplo de cénario com 15 disciplinas x 25 conflitos:
+<img width="460" height="300" src="imgs/entrada.png">
 
+2. É recomendado deixar esses *arquivos juntos na mesma pasta* ("main.c", "entrada.txt", "matriz.txt", "trabalhoLP1.cbp")
+<img src="imgs/exemplo_pasta.png">
+
+3. Depois *abra o arquivo main.c* em algum ambiente de desenvolvimento (nesse caso o CodeBlocks)
+    1. Vá em "File" e depois em "Open"
+    <img src="imgs/codeblocks_imgs/1.png">
+    2. Ache a pasta que você colocou os arquivos e *selecione a main.c*
+    <img src="imgs/codeblocks_imgs/2.png">
+
+4. Rode o código
+<img src="imgs/codeblocks_imgs/2.png">    
+
+5. A saída esperada deve ser próxima a essa imagem a seguir:
+    

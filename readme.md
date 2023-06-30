@@ -14,7 +14,7 @@ Este código em C tem o objetivo de montar uma matriz de conflitos com base em u
 
 ## Exemplo de Entrada: 
 ## Exemplo de Saída: 
-![Exemplo de saída]("imgs/saida.png")
+<img width="460" height="300" src="imgs/saida.png">
 
 ## Tópicos utilizados em C
 

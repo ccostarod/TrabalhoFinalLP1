@@ -1,7 +1,12 @@
-# Matriz de Conflitos - README
-
-Este código em C tem o objetivo de montar uma matriz de conflitos com base em um arquivo de entrada e realizar análises a partir de disciplinas sorteadas.
+# Trabalho Final - Tema 4 - Linguagem de Programação 1
 O trabalho é válido pela 3ª nota da disciplina de Linguagem de Progamação I e foi feito por Rodrigo Otávio, Therlyson Ryan, João Marcelo.
+## Matriz de Conflitos - Introdução
+
+Este código em C tem o objetivo de montar uma matriz de conflitos com base em um arquivo de entrada e realizar 2 análises a partir de disciplinas sorteadas.
+As funções (montarGrade e montarGrade2) percorrem a matriz de conflitos (grade) a partir de um ponto de análise (número sorteado) e selecionam as disciplinas que podem ser adicionadas à grade sem conflitos. A diferença está na ordem de checagem:<br>
+montarGrade: Pega o número sorteado e analisa até a última disciplina (análise crescente), e depois analisa a partir do número sorteado - 1, até a primeira disciplina (análise decrescente).<br>
+montarGrade2:Pega o número sorteado e analisa até a última disciplina (análise crescente), e depois analisa a partir do primeiro termo até o número sorteado - 1 (análise crescente).
+
 
 ## Funcionalidades
 

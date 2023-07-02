@@ -48,7 +48,7 @@ montarGrade2:Pega o número sorteado e analisa até a última disciplina (análi
     2. Ache a pasta que você colocou os arquivos e *selecione a `main.c`*
     <img src="imgs/codeblocks_imgs/2.png"><br>
 4. Rode o código
-<img src="imgs/codeblocks_imgs/3.png"><br>    
+<img src="imgs\codeblocks_imgs\3.png"><br>    
 
 5. A saída esperada deve ser próxima a essa imagem a seguir:
-<img width="644" height="455" src="imgs/saida.png"><br>
+<img width="644" height="455" src="imgs\saida.png"><br>

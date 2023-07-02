@@ -5,8 +5,11 @@
 #include <malloc.h>
 #include <locale.h>
 
-#define disciplinas_maximo 25
+#define disciplinas_maximo 25 
 
+// Variaveis globais que indicam a quantidade de dsiciplinas escolhidas em cada analise
+int nmr_dscp1; //
+int nmr_dscp2;
 
 typedef struct {
 	int disciplina1;
@@ -16,10 +19,10 @@ typedef struct {
 void montarMatriz(const char* arquivoEntrada);
 bool procurarConflitos(int **grade, int disciplinas[], int numDisciplinas, int novaDisciplina);
 void montarGrade(int **grade, int *numDisciplinas, int numeroSorteado);
+void montarGrade_imprime(int **grade, int *numDisciplinas, int numeroSorteado);
 void montarGrade2(int **grade, int *numDisciplinas, int numeroSorteado);
-int tamanho1(int **grade, int *numDisciplinas, int numeroSorteado);
-int tamanho2(int **grade, int *numDisciplinas, int numeroSorteado);
-void comparar(int num1, int num2);
+void montarGrade2_imprime(int **grade, int *numDisciplinas, int numeroSorteado);
+
 
 int main() {
     setlocale(LC_ALL,"Portuguese");
@@ -32,15 +35,17 @@ int main() {
     int i = 0, t1, t2;
 
     lista_conflitos = fopen("matriz.txt", "r");
-    if (lista_conflitos == NULL) {
+    
+	if (lista_conflitos == NULL) {
         printf("Erro ao abrir o lista_conflitos de entrada.\n");
-        return 1;
+        exit(1);
     }
 
     fscanf(lista_conflitos, "%d", &numDisciplinas);
 
     grade = (int **)malloc(numDisciplinas * sizeof(int *));
-    for (i = 0; i < numDisciplinas; i++) {
+    
+	for (i = 0; i < numDisciplinas; i++) {
         grade[i] = (int *)malloc(numDisciplinas * sizeof(int));
     }
 
@@ -54,63 +59,76 @@ int main() {
 
     srand(time(NULL));
    
-    int numSorteios = 3;  // Alteração: número de sorteios desejados
-    sorteio = (int*)malloc(numSorteios*sizeof(int));  // Alocação dinâmica
-    printf("Analises a partir de disciplinas sorteadas:\n\n");
+    int numSorteios = 3;  // Indicando o número de sorteios desejados
+    
+    sorteio = (int*)malloc(numSorteios*sizeof(int));
+    
+	printf("Analises a partir de disciplinas sorteadas:\n\n");
     
     i=0;
+	
 	while (i < 3) {
 	    sorteio[i] = rand() % numDisciplinas + 1;
 	    printf("Disciplina sorteada: %d\n", sorteio[i]);
-	    printf("Analise 1 -> ");
 	    montarGrade(grade, &numDisciplinas, sorteio[i]);
-	    printf("Analise 2 -> ");
 	    montarGrade2(grade, &numDisciplinas, sorteio[i]);
-	    
-	    t1 = tamanho1(grade, &numDisciplinas, sorteio[i]);
-	    t2 = tamanho2(grade, &numDisciplinas, sorteio[i]);
-	    comparar(t1, t2);
-	    
-	    printf("\n\n");
-	    
-	    
+
+		if (nmr_dscp1 > nmr_dscp2){
+			printf("Analise Ideal -> ");
+		    montarGrade_imprime(grade, &numDisciplinas, sorteio[i]);
+		}
+		
+		if (nmr_dscp2 > nmr_dscp1){
+			printf("Analise Ideal -> ");
+		    montarGrade2(grade, &numDisciplinas, sorteio[i]);
+		}
+		
+		if (nmr_dscp1 == nmr_dscp2){
+			printf("Analise Ideal -> ");
+	    	montarGrade_imprime(grade, &numDisciplinas, sorteio[i]);
+		}
+		
 	    i++;
 	}
-
 
     for (i = 0; i < numDisciplinas; i++) {
         free(grade[i]);
     }
-    free(grade);
+    
+	free(grade);
 
     return 0;
 }
 
-
-//fun��es do c�digo
+//Montando as funções
 
 void montarMatriz(const char* arquivoEntrada) {
-    FILE* lista_conflitos = fopen(arquivoEntrada, "r");
-    if (lista_conflitos == NULL) {
+    // Variáveis a serem utilizadas dentro da função
+	int numDisciplinas, numConflitos;
+    Disciplina disciplinas;
+
+    
+	// Abrindo o arquivo de entrada e lendo o nº de conflitos e disciplinas
+	FILE* lista_conflitos = fopen(arquivoEntrada, "r");
+	if (lista_conflitos == NULL) {
         printf("Não foi possível abrir a lista de entrada.\n");
         exit(1);
     }
+	fscanf(lista_conflitos, "%d", &numDisciplinas);
+    fscanf(lista_conflitos, "%d", &numConflitos);
+    
+    // Iniciando a matriz que indica os conflitos existentes
+    int grade[numDisciplinas][numDisciplinas];
 
-    int numDisciplinas, numConflitos;
-    fscanf(lista_conflitos, "%d", &numDisciplinas);
-
-    int grade[numDisciplinas][numDisciplinas]; 
-
-    for (int i = 0; i < numDisciplinas; i++) {
+    // Preechendo a matriz de conflitos primeiramente apenas com zeros
+	for (int i = 0; i < numDisciplinas; i++) {
         for (int j = 0; j < numDisciplinas; j++) {
             grade[i][j] = 0;
         }
     }
-	
-	Disciplina disciplinas; 
-	
-    fscanf(lista_conflitos, "%d", &numConflitos);
-    for (int j = 0; j < numConflitos; j++) {
+    
+    // Identificando onde há conflito e colocando 1 na posição
+	for (int j = 0; j < numConflitos; j++) {
         fscanf(lista_conflitos, "%d", &disciplinas.disciplina1);
         fscanf(lista_conflitos, "%d", &disciplinas.disciplina2);
 
@@ -119,26 +137,23 @@ void montarMatriz(const char* arquivoEntrada) {
     }
 
     fclose(lista_conflitos);
-
     
+    // Abrindo ou criando o arquivo matriz.txt para receber a matriz com os conflitos
     FILE* arquivo_Matriz = fopen("matriz.txt", "w");
     if (arquivo_Matriz == NULL) {
         printf("Erro ao criar o arquivo da matriz.\n");
         exit(1);
     }
-
     fprintf(arquivo_Matriz, "%d\n", numDisciplinas); 
-
     for (int i = 0; i < numDisciplinas; i++) {
         for (int j = 0; j < numDisciplinas; j++) {
             fprintf(arquivo_Matriz, "%d ", grade[i][j]);
         }
         fprintf(arquivo_Matriz, "\n");
     }
-
     fclose(arquivo_Matriz);
-
     printf("Matriz gerada e armazenada com sucesso em \"matriz.txt\".\n");
+    
 }
 
 
@@ -157,52 +172,72 @@ bool procurarConflitos(int **grade, int disciplinas[], int numDisciplinas, int n
     return procurarConflitos(grade, disciplinas, numDisciplinas - 1, novaDisciplina);
 }
 
-
+// Função para montar a grade de disciplinas a partir de um ponto de anállise mas sem imprimir na tela o resultado
 void montarGrade(int **grade, int *numDisciplinas, int numeroSorteado) {
-    // Função para montar a grade de disciplinas a partir de um ponto de anállise
-
+	// Varáveis a serem utilizadas na função
     int disciplinasEscolhidas[disciplinas_maximo];
     int numDisciplinasEscolhidas = 0;
 
-    
+    // Preenchendo a lista de disciplinas escolhidas
+    // Crescente
     for (int i = numeroSorteado - 1; i < *numDisciplinas; i++) {
         if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
             disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
             numDisciplinasEscolhidas++;
         }
     }
-
-  
+  	// Decrescente
     for (int i = numeroSorteado - 2; i >= 0; i--) {
-    
         if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
         disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
         numDisciplinasEscolhidas++;
         }
     }
+    
+    // Variável Global que indica a quantidade de disciplinas ideais com base na Análise 1
+    nmr_dscp1 = numDisciplinasEscolhidas;
 
+}
+
+// Mesma função de cima porém agora imprimindo o resultado
+void montarGrade_imprime(int **grade, int *numDisciplinas, int numeroSorteado) {
+    int disciplinasEscolhidas[disciplinas_maximo];
+    int numDisciplinasEscolhidas = 0;
+    for (int i = numeroSorteado - 1; i < *numDisciplinas; i++) {
+        if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
+            disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
+            numDisciplinasEscolhidas++;
+        }
+    }
+	for (int i = numeroSorteado - 2; i >= 0; i--) {
+        if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
+        disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
+        numDisciplinasEscolhidas++;
+        }
+    }
     printf("Disciplinas escolhidas: ");
     for (int i = 0; i < numDisciplinasEscolhidas; i++) {
         printf("%d ", disciplinasEscolhidas[i] + 1);
     }
-    printf("\n");
+    printf("\n\n");
+    
 }
 
+// Função para montar a grade de disciplinas a partir de um ponto de anállise mas sem imprimir na tela o resultado
 void montarGrade2(int **grade, int *numDisciplinas, int numeroSorteado) {
-    // Função para montar a grade de disciplinas a partir de um ponto de análise
-    
+    // Varáveis a serem utilizadas na função
     int disciplinasEscolhidas[disciplinas_maximo];
     int numDisciplinasEscolhidas = 0;
 
-    // Analisar a partir do número sorteado até o último número de disciplinas
+	// Preenchendo a lista de disciplinas escolhidas
+    // Analisando a partir do número sorteado até o último número de disciplinas
     for (int i = numeroSorteado - 1; i < *numDisciplinas; i++) {
         if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
             disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
             numDisciplinasEscolhidas++;
         }
     }
-    
-    // Analisar da primeira disciplina até o número sorteado - 2
+    // Analisando da primeira disciplina até o número sorteado - 2
     for (int i = 0; i < numeroSorteado - 1; i++) {
         if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
             disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
@@ -210,75 +245,31 @@ void montarGrade2(int **grade, int *numDisciplinas, int numeroSorteado) {
         }
     }
 
+    // Variável Global que indica a quantidade de disciplinas ideais com base na Análise 2
+    nmr_dscp2 = numDisciplinasEscolhidas;
+    
+}
+
+// Mesma função de cima porém agora imprimindo o resultado
+void montarGrade2_imprime(int **grade, int *numDisciplinas, int numeroSorteado) {
+    int disciplinasEscolhidas[disciplinas_maximo];
+    int numDisciplinasEscolhidas = 0;
+    for (int i = numeroSorteado - 1; i < *numDisciplinas; i++) {
+        if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
+            disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
+            numDisciplinasEscolhidas++;
+        }
+    }
+    for (int i = 0; i < numeroSorteado - 1; i++) {
+        if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
+            disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
+            numDisciplinasEscolhidas++;
+        }
+    }
     printf("disciplinas escolhidas: ");
     for (int i = 0; i < numDisciplinasEscolhidas; i++) {
         printf("%d ", disciplinasEscolhidas[i] + 1);
     }
-    printf("\n");
-}
-
-
-
-int tamanho1(int **grade, int *numDisciplinas, int numeroSorteado) {
-    // Função para montar a grade de disciplinas a partir de um ponto de anállise
-
-    int disciplinasEscolhidas[disciplinas_maximo];
-    int numDisciplinasEscolhidas = 0;
-
+    printf("\n\n");
     
-    for (int i = numeroSorteado - 1; i < *numDisciplinas; i++) {
-        if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
-            disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
-            numDisciplinasEscolhidas++;
-        }
-    }
-
-  
-    for (int i = numeroSorteado - 2; i >= 0; i--) {
-    
-        if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
-        disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
-        numDisciplinasEscolhidas++;
-        }
-    }
-
-    return numDisciplinasEscolhidas;
-}
-
-
-int tamanho2(int **grade, int *numDisciplinas, int numeroSorteado) {
-    // Função para montar a grade de disciplinas a partir de um ponto de análise
-    
-    int disciplinasEscolhidas[disciplinas_maximo];
-    int numDisciplinasEscolhidas = 0;
-
-    // Analisar a partir do número sorteado até o último número de disciplinas
-    for (int i = numeroSorteado - 1; i < *numDisciplinas; i++) {
-        if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
-            disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
-            numDisciplinasEscolhidas++;
-        }
-    }
-    
-    // Analisar da primeira disciplina até o número sorteado - 2
-    for (int i = 0; i < numeroSorteado - 1; i++) {
-        if (procurarConflitos(grade, disciplinasEscolhidas, numDisciplinasEscolhidas, i)) {
-            disciplinasEscolhidas[numDisciplinasEscolhidas] = i;
-            numDisciplinasEscolhidas++;
-        }
-    }
-    
-    return numDisciplinasEscolhidas;
-}
-
-void comparar(int num1, int num2){
-	if(num1 > num2){
-		printf("Analise 1 tem mais disciplinas!");
-	}
-	if(num1 == num2){
-		printf("Analises iguais!");
-	}
-	if(num1 < num2){
-		printf("Analise 2 tem mais disciplinas!");
-	}
 }

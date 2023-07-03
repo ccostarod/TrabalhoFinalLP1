@@ -8,8 +8,6 @@ montarGrade: Pega o número sorteado e analisa até a última disciplina (análi
 montarGrade2:Pega o número sorteado e analisa até a última disciplina (análise crescente), e depois analisa a partir do primeiro termo até o número sorteado - 1 (análise crescente).
 
 
-## Funcionalidades
-
 ## Funcionalidades:
 1. *montarMatriz* : Lê um arquivo de entrada contendo o número de disciplinas e conflitos entre elas. Em seguida, cria uma matriz de conflitos e a armazena em um arquivo chamado "matriz.txt".
 

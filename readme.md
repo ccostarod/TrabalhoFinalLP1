@@ -10,15 +10,16 @@ montarGrade2:Pega o número sorteado e analisa até a última disciplina (análi
 
 ## Funcionalidades
 
-1. *montarMatriz*: Lê um arquivo de entrada contendo o número de disciplinas e conflitos entre elas. Em seguida, cria uma matriz de conflitos e a armazena em um arquivo chamado "matriz.txt".
+## Funcionalidades:
+1. *montarMatriz* : Lê um arquivo de entrada contendo o número de disciplinas e conflitos entre elas. Em seguida, cria uma matriz de conflitos e a armazena em um arquivo chamado "matriz.txt".
 
 2. *procurarConflitos*: Verifica se uma nova disciplina escolhida entra em conflito com as disciplinas já escolhidas anteriormente, com base na matriz de conflitos.
 
 3. *montarGrade* e *montarGrade2*: A partir de uma posição de início de análise (decidida por sorteio) e da matriz de conflitos, seleciona as disciplinas que não têm conflitos com as disciplinas escolhidas anteriormente.
 
-4. *comparar*: Compara as duas analises feitas a partir das funções montarGrade e montarGrade2, retornando a que apresenta o maior número de disciplinas.
+4. *montarGrade_imprime* e *montarGrade2_imprime*: Repetem a ação das funções montarGrade e montarGrade2 porém imprimem a análise feita na tela. Foram necessárias no código para implantarmos a lógica de otimizaçãopara retornar ao usuário apenas a análise com o maior número de disciplinas
 
-4. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 abordagens a partir 3 de disciplinas sorteadas, fazendo duas análises em cada, utilizando a função "montarGrade" e "montarGrade2", e escolhe a ideal a partir da função "comparar".
+5. *main*: A função principal do programa. Chama a função "montarMatrizConflitos" para gerar a matriz de conflitos. Em seguida, lê a matriz do arquivo "matriz.txt" e realiza 3 abordagens a partir 3 de disciplinas sorteadas, fazendo duas análises em cada, utilizando a função "montarGrade" e "montarGrade2", e escolhe a ideal".
 
 
 ## Tópicos utilizados em C
